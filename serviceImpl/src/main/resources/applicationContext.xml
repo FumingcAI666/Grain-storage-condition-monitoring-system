@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:comtext="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                    http://code.alibabatech.com/schema/dubbo
+                    http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 扫描注解 -->
+    <comtext:component-scan base-package="com.administrator"></comtext:component-scan>
+    <!-- 找到注册中心 -->
+    <!-- -->
+    <dubbo:application name="administrator"></dubbo:application>
+    <!-- 配置注册中心 -->
+    <!-- 使用zookeeper注册中心暴露服务地址 -->
+    <dubbo:registry address="zookeeper:// 192.168.254.1:2181" protocol="zookeeper" check="false"/>
+    <!--<dubbo:registry address="zookeeper://127.0.0.1:2181"  check="false"/>-->
+    <dubbo:protocol host="127.0.0.1"></dubbo:protocol>
+
+    <!--  -->
+    <dubbo:reference interface="com.adminsterator.system.AdministratorService" id="collegeservice" timeout="50000"/>
+</beans>
